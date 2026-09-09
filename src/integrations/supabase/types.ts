@@ -14,7 +14,83 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      borrow_transactions: {
+        Row: {
+          borrower_name: string
+          borrower_type: string
+          created_at: string
+          date_borrowed: string
+          date_returned: string | null
+          department: string | null
+          due_date: string
+          equipment_id: string
+          id: string
+          status: string
+        }
+        Insert: {
+          borrower_name: string
+          borrower_type: string
+          created_at?: string
+          date_borrowed?: string
+          date_returned?: string | null
+          department?: string | null
+          due_date: string
+          equipment_id: string
+          id?: string
+          status?: string
+        }
+        Update: {
+          borrower_name?: string
+          borrower_type?: string
+          created_at?: string
+          date_borrowed?: string
+          date_returned?: string | null
+          department?: string | null
+          due_date?: string
+          equipment_id?: string
+          id?: string
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "borrow_transactions_equipment_id_fkey"
+            columns: ["equipment_id"]
+            isOneToOne: false
+            referencedRelation: "equipment"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      equipment: {
+        Row: {
+          asset_code: string
+          availability: string
+          category: string | null
+          condition: string | null
+          created_at: string
+          equipment_name: string
+          id: string
+        }
+        Insert: {
+          asset_code: string
+          availability?: string
+          category?: string | null
+          condition?: string | null
+          created_at?: string
+          equipment_name: string
+          id?: string
+        }
+        Update: {
+          asset_code?: string
+          availability?: string
+          category?: string | null
+          condition?: string | null
+          created_at?: string
+          equipment_name?: string
+          id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
